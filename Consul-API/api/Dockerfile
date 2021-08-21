@@ -1,12 +1,17 @@
-# syntax=docker/dockerfile:1
 FROM python:3.7-alpine
 
-WORKDIR /usr/src/app
+COPY ./requirements.txt /app/requirements.txt
 
-COPY requirements.txt ./
+WORKDIR /app
+
+RUN apk add --update gcc libc-dev linux-headers && rm -rf /var/cache/apk/*
 RUN pip install --no-cache-dir -r requirements.txt
+# RUN apk add --no-cache py3-psutil
 
-COPY . .
+COPY . /app
 
-CMD [ "python3", "./app.py" ]
+ENTRYPOINT [ "python3" ]
 
+CMD [ "app.py" ]
+
+EXPOSE 5000
