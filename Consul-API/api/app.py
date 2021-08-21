@@ -68,11 +68,11 @@ def get_consul_cluster_systemInfo():
     return jsonify(
         vCpus = psutil.cpu_count(),
         CpuLoadAvaragePercent = [x / psutil.cpu_count() * 100 for x in psutil.getloadavg()], # Return the average system load over the last 1, 5 and 15 minutes as a tuple
-        vMemoryTotalGB =psutil.virtual_memory().total / (3*1024.0) ,
-        vMemoryUsedMB = psutil.virtual_memory().used / (2*1024.0),
+        vMemoryTotalGB =psutil.virtual_memory().total / (1024.0**3) ,
+        vMemoryUsedMB = psutil.virtual_memory().used / (1024.0**2),
         vMemoryAvailablePrecent = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total,
-        swapMemoryUsedMB = psutil.swap_memory().used / (2*1024.0),
-        DiskUsageTotalGB  = psutil.disk_usage('/').total / (3*1024.0),
+        swapMemoryUsedMB = psutil.swap_memory().used / (1024.0**2),
+        DiskUsageTotalGB  = psutil.disk_usage('/').total / (1024.0**3),
         DiskUsagePercent = psutil.disk_usage('/').percent,
         NetworkIOCountersBytesSent = psutil.net_io_counters().bytes_sent / 1024.0,
         NetworkIOCountersBytesReceived = psutil.net_io_counters().bytes_recv / 1024.0,

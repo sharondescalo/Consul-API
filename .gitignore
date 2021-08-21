@@ -2,3 +2,4 @@ Consul-API/.venv/
 Consul-API/.vscode/
 Consul-API/api/__pycache__/
 Consul-API/.vagrant/
+Consul-API/consul-server/.vagrant/
